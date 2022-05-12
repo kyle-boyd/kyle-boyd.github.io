@@ -1,18 +1,10 @@
 
 
         $(document).ready(function(){
-          var joke1List = ["Hello", "Hallo", "Howdy"];
-          var answer1List = ["Hello", "Hallo", "Howdy"];
           var buttonClass = "blank"
-
           var fullJokeList = [];
-
-
-            var jokeFilter = ["jokes"];
-            var jokeList = filterByProperty(fullJokeList, jokeFilter);
-
-
-
+          var jokeFilter = ["jokes"];
+          var jokeList = filterByProperty(fullJokeList, jokeFilter);
 
 // Get joke data
 
@@ -73,7 +65,35 @@ var fullJokeList;
                         $(".Generate").click(function(){
                           var jokeList = filterByProperty(fullJokeList, jokeFilter);
                           var jokeNum = Math.floor(Math.random() * jokeList.length);
-                          
+
+
+
+                          var formatNum = checkEmpty(jokeList[jokeNum]);
+                          //longformat / one liner joke
+                          if (formatNum = 2) {
+                            var joke1 = jokeList[jokeNum][1]
+                            if (joke1.length > 50) {
+                              $("#joke1").html("<p clas='longform'>" + joke1 + "</p>");
+                            }else {
+                                $("#joke1").html("<p>" + joke1 + "</p>");
+                                $("#answer1").html("<p>" + "</p>");
+                              }
+
+
+                          };
+                          // Question / Answer
+                          if (formatNum = 3) {
+                            var joke1 = jokeList[jokeNum][1]
+                            var answer1 = jokeList[jokeNum][2]
+                            $("#joke1").html("<p>" + joke1 + "</p>");
+                            $("#answer1").html("<p>" + answer1 + "</p>");
+                          };
+
+                          //Back and forth (knock knock)
+                          if (formatNum >= 4) {
+
+                          };
+
                           var joke1 = jokeList[jokeNum][1]
                           var answer1 = jokeList[jokeNum][2]
                           var displayjoke = "<p>" + joke1 + "</b>" + answer1 + "</p>" ;
@@ -132,7 +152,10 @@ var fullJokeList;
                     var newLength = 0;
 
                       for(var i = 0; i < array.length; i++){
-                      if (array[i]=! "") newLength = newLength+1;
+                      if (array[i].length > 0) {
+                        newLength = newLength+1;
+                      }
                       }
                         return newLength;
+
                     }
