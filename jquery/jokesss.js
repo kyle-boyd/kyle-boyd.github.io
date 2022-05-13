@@ -6,6 +6,12 @@
           var jokeFilter = ["jokes"];
           var jokeList = filterByProperty(fullJokeList, jokeFilter);
 
+          if($(window).width() <= 600) {
+              $('.mainLogo').attr('src','images/J Logo.png');
+              } else {
+              $('.mainLogo').attr('src','images/Jokesss Logo.png');
+            };
+
 // Get joke data
 
 var fullJokeList;
@@ -26,10 +32,19 @@ var fullJokeList;
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
       x.className += " responsive";
+      $('img',x.a).toggle()
     } else {
       x.className = "topnav";
     }
   }
+
+  $( window ).resize(function() {
+    if($(window).width() <= 600) {
+        $('.mainLogo').attr('src','images/J Logo.png');
+        } else {
+        $('.mainLogo').attr('src','images/Jokesss Logo.png');
+      };
+    });
 
 
   //Sort Buttons
@@ -70,35 +85,43 @@ var fullJokeList;
 
                           var formatNum = checkEmpty(jokeList[jokeNum]);
                           //longformat / one liner joke
-                          if (formatNum = 2) {
+                          if (formatNum == 2) {
                             var joke1 = jokeList[jokeNum][1]
-                            if (joke1.length > 50) {
-                              $("#joke1").html("<p clas='longform'>" + joke1 + "</p>");
+
+                            if (joke1.length >= 85) {
+                              console.log(joke1.length);
+                              $("#joke1").html("<p>" + joke1 + "</p>");
+                              $("#joke1").attr("class", "longform");
+                              $("#answer1").html("<p>" + "</p>");
                             }else {
                                 $("#joke1").html("<p>" + joke1 + "</p>");
                                 $("#answer1").html("<p>" + "</p>");
+                                $("#joke1").removeClass("longform");
+
                               }
 
 
                           };
                           // Question / Answer
-                          if (formatNum = 3) {
+                          if (formatNum == 3) {
                             var joke1 = jokeList[jokeNum][1]
                             var answer1 = jokeList[jokeNum][2]
                             $("#joke1").html("<p>" + joke1 + "</p>");
+                            $("#joke1").removeClass("longform");
                             $("#answer1").html("<p>" + answer1 + "</p>");
                           };
 
                           //Back and forth (knock knock)
                           if (formatNum >= 4) {
-
+                            var joke1 = jokeList[jokeNum][1]
+                            var answer1 = jokeList[jokeNum][2]
+                            var displayjoke = "<p>" + joke1 + "</b>" + answer1 + "</p>" ;
+                            $("#joke1").html("<p>" + joke1 + "</p>");
+                            $("#joke1").removeClass("longform");
+                            $("#answer1").html("<p>" + answer1 + "</p>");
                           };
 
-                          var joke1 = jokeList[jokeNum][1]
-                          var answer1 = jokeList[jokeNum][2]
-                          var displayjoke = "<p>" + joke1 + "</b>" + answer1 + "</p>" ;
-                          $("#joke1").html("<p>" + joke1 + "</p>");
-                          $("#answer1").html("<p>" + answer1 + "</p>");
+
 
                           });
         });
