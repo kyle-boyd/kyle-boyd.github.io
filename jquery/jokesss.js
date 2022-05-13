@@ -40,9 +40,9 @@ var fullJokeList;
 
   $( window ).resize(function() {
     if($(window).width() <= 600) {
-        $('.mainLogo').attr('src','images/J Logo.png');
+        $('.mainLogo').attr('src','images/JLogo.png');
         } else {
-        $('.mainLogo').attr('src','images/Jokesss Logo.png');
+        $('.mainLogo').attr('src','images/jokessslogo.png');
       };
     });
 
